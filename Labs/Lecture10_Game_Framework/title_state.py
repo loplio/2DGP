@@ -7,11 +7,13 @@ image = None
 
 
 def enter():
-    pass
+    global image
+    image = load_image('title.png')
 
 
 def exit():
-    pass
+    global image
+    del(image)
 
 
 def handle_events():
@@ -19,7 +21,9 @@ def handle_events():
 
 
 def draw():
-    pass
+    clear_canvas()
+    image.draw(400, 300)
+    update_canvas()
 
 
 
