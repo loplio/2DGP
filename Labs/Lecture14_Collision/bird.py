@@ -34,19 +34,10 @@ class Bird:
         if self.x > 1500:
             print(self.velocity)
             self.velocity *= -1
-            self.x = 1450
+            self.x = 1500
         elif self.x < 0:
             self.velocity *= -1
-            self.x = 100
-        # self.cur_state.do(self)
-        # if len(self.event_que) > 0:
-        #     event = self.event_que.pop()
+            self.x = 0
 
     def draw(self):
-        # if self.dir == 1:
-        #     self.image.clip_draw(int(self.frame) * 100, 100, 100, 100, self.x, self.y)
-        # else:
-            self.image.clip_draw(int(self.frame) * 100, 0, 100, 100, self.x, self.y)
-        # self.cur_state.draw(self)
-        # self.font.draw(self.x - 60, self.y + 50, '(Time: %3.2f)' % get_time(), (255, 255, 0))
-        #fill here
+        self.image.clip_draw(int(self.frame) * 100, 0, 100, 100, self.x, self.y)

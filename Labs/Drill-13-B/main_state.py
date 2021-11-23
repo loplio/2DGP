@@ -80,6 +80,15 @@ def update():
         if collide(ball, boy):
             balls.remove(ball)
             game_world.remove_object(ball)
+    for brick in bricks.copy():
+        boy.state_crash = collide(brick, boy)
+        if boy.state_crash:
+            boy.brick_speed = game_framework.frame_time * brick.speed
+            boy.brick = brick.x
+            boy.y += brick.y - boy.y + 50
+        pass
+
+
 
 
 def draw():

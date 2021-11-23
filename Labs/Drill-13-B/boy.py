@@ -55,6 +55,8 @@ class IdleState:
         boy.timer -= 1
         if boy.timer == 0:
             boy.add_event(SLEEP_TIMER)
+        if boy.brick_speed != 0:
+            boy.x += boy.brick_speed
 
     def draw(boy):
         if boy.dir == 1:
@@ -84,6 +86,10 @@ class RunState:
         #boy.frame = (boy.frame + 1) % 8
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 8
         boy.x += boy.velocity * game_framework.frame_time
+        if boy.brick_speed != 0:
+            boy.x += boy.brick_speed
+        if boy.brick_speed:
+            boy.x = clamp(boy.brick-90, boy.x, boy.brick+90)
         boy.x = clamp(25, boy.x, 1600 - 25)
 
     def draw(boy):
@@ -131,6 +137,9 @@ class Boy:
         self.dir = 1
         self.velocity = 0
         self.frame = 0
+        self.brick = 0
+        self.brick_speed = 0
+        self.state_crash = 0
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
